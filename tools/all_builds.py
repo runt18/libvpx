@@ -41,7 +41,7 @@ def main(argv):
     o, _ = getopt.getopt(argv[1:opt_end_index], None, LONG_OPTIONS)
   except getopt.GetoptError, err:
     print str(err)
-    print "Usage: %s [--shard=<n> --shards=<n>] -- [configure flag ...]"%argv[0]
+    print "Usage: {0!s} [--shard=<n> --shards=<n>] -- [configure flag ...]".format(argv[0])
     sys.exit(2)
 
   options.update(o)
@@ -53,7 +53,7 @@ def main(argv):
   experiments = list_of_experiments()
   base_command = " ".join([BASE_COMMAND] + extra_args)
   configs = [base_command]
-  configs += ["%s --enable-%s" % (base_command, e) for e in experiments]
+  configs += ["{0!s} --enable-{1!s}".format(base_command, e) for e in experiments]
   my_configs = zip(configs, range(len(configs)))
   my_configs = filter(lambda x: x[1] % shards == shard, my_configs)
   my_configs = [e[0] for e in my_configs]
@@ -63,7 +63,7 @@ def main(argv):
     test_build(config)
 
 def test_build(configure_command):
-  print "\033[34m\033[47mTesting %s\033[0m" % (configure_command)
+  print "\033[34m\033[47mTesting {0!s}\033[0m".format((configure_command))
   RunCommand(configure_command)
   RunCommand("make clean")
   RunCommand("make")

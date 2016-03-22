@@ -33,7 +33,7 @@ class Usage(Exception):
 
 class SubprocessException(Exception):
     def __init__(self, args):
-        msg = "Failed to execute '%s'"%(" ".join(args))
+        msg = "Failed to execute '{0!s}'".format((" ".join(args)))
         super(SubprocessException, self).__init__(msg)
 
 
@@ -127,7 +127,7 @@ def main(argv=None):
                     continue
                 warning_line_num = int(fields[1])
                 if warning_line_num in affected_lines:
-                    print "%s:%d:%s"%(filename, warning_line_num,
+                    print "{0!s}:{1:d}:{2!s}".format(filename, warning_line_num,
                                       ":".join(fields[2:]))
                     lint_failed = True
 
