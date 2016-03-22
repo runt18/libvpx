@@ -68,7 +68,7 @@ class DiffHunk(object):
         return self.left.Complete() and self.right.Complete()
 
     def __repr__(self):
-        return "DiffHunk(%s, %s, len %d)" % (
+        return "DiffHunk({0!s}, {1!s}, len {2:d})".format(
             self.left.filename, self.right.filename,
             max(self.left.length, self.right.length))
 
